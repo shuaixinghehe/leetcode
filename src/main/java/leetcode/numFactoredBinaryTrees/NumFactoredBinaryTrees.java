@@ -15,9 +15,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class NumFactoredBinaryTrees {
 
     public static void main(String[] args) {
-        int[] arr = { 45, 42, 2, 18, 23, 1170, 12, 41, 40, 9, 47, 24, 33, 28, 10, 32, 29, 17, 46,
+        int[] arr = {45, 42, 2, 18, 23, 1170, 12, 41, 40, 9, 47, 24, 33, 28, 10, 32, 29, 17, 46,
                 11, 759, 37, 6, 26, 21, 49, 31, 14, 19, 8, 13, 7, 27, 22, 3, 36, 34, 38, 39, 30, 43,
-                15, 4, 16, 35, 25, 20, 44, 5, 48 };
+                15, 4, 16, 35, 25, 20, 44, 5, 48};
         //
         System.out.println(numFactoredBinaryTrees(arr));
     }
@@ -36,9 +36,8 @@ public class NumFactoredBinaryTrees {
         Map<Integer, Integer> nodeValueMap = new HashMap<>();
         for (int i = 1; i < list.size(); i++) {
             for (int j = i - 1; j >= 0; j--) {
-                if (list.get(i) % list.get(j) == 0 // 整除
-                        && set.contains(list.get(i) / list.get(j)) // 并且除完，另一个数还在set里面
-                ) {
+                // 并且除完，另一个数还在set里面 // 整除
+                if (list.get(i) % list.get(j) == 0 && set.contains(list.get(i) / list.get(j))) {
                     // 所以 list[j] 和 list[i]/list[j] 是两个因子
                     int factor1 = list.get(j);
                     int factor2 = list.get(i) / list.get(j);
@@ -55,8 +54,10 @@ public class NumFactoredBinaryTrees {
                         int value2 = nodeValueMap.getOrDefault(factor2, 1);
                         if (nodeValueMap.keySet().contains(list.get(i))) {
                             //                            System.out.println(
-                            //                                    "i=" + i + " list.get(i):" + list.get(i) + "  nodemap.get"
-                            //                                            + "(list.getIi):" + nodeValueMap.get(list.get(i)));
+                            //                                    "i=" + i + " list.get(i):" + list.get(i) + "
+                            //                                    nodemap.get"
+                            //                                            + "(list.getIi):" + nodeValueMap.get(list
+                            //                                            .get(i)));
                             nodeValueMap.put(list.get(i), nodeValueMap.get(list.get(i)) + 1);
                             if (value1 > 1 && value2 == 1) {
                                 nodeValueMap.put(list.get(i),
